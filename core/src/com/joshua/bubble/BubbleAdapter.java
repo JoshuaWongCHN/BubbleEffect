@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g3d.Renderable;
 import com.badlogic.gdx.graphics.g3d.Shader;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.environment.DirectionalLight;
+import com.badlogic.gdx.graphics.g3d.model.MeshPart;
 import com.badlogic.gdx.graphics.g3d.model.NodePart;
 import com.badlogic.gdx.graphics.g3d.shaders.DefaultShader;
 import com.badlogic.gdx.graphics.g3d.utils.CameraInputController;
@@ -21,6 +22,7 @@ import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 import com.badlogic.gdx.graphics.g3d.utils.RenderContext;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Vector3;
+import com.joshua.bubble.model.IcoSphereBuilder;
 
 import static com.badlogic.gdx.graphics.VertexAttributes.Usage;
 
@@ -49,9 +51,6 @@ public class BubbleAdapter extends ApplicationAdapter {
         mCamera.far = 10000f;
 
         mEnvironment = new Environment();
-//		mEnvironment.set(new ColorAttribute(ColorAttribute.AmbientLight, 0.4f, 0.4f, 0.4f, 1f));
-//		mEnvironment.add(new DirectionalLight().set(Color.WHITE.mul(0.6f), new Vector3(0, -1, 0)));
-//		mEnvironment.add(new DirectionalLight().set(Color.valueOf("#0C056D").mul(0.6f), new Vector3(0, 1, 0)));
         mEnvironment.add(new DirectionalLight().set(Color.valueOf("#590D82").mul(0.5f), new Vector3(-200, -300, -400)));
         mEnvironment.add(new DirectionalLight().set(Color.valueOf("#590D82").mul(0.5f), new Vector3(200, -300, -400)));
 
@@ -61,8 +60,9 @@ public class BubbleAdapter extends ApplicationAdapter {
                 Usage.Position | Usage.Normal);
         NodePart part = mModel.getNode("node1").parts.get(0);
 
+        MeshPart sphere = new IcoSphereBuilder().build(120f, 4, Usage.Position | Usage.Normal);
         mRenderable = new Renderable();
-        mRenderable.meshPart.set(part.meshPart);
+        mRenderable.meshPart.set(sphere);
         mRenderable.material = part.material;
         mRenderable.environment = mEnvironment;
         mRenderable.worldTransform.idt();
