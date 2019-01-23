@@ -36,8 +36,8 @@ public class BubbleAdapter extends ApplicationAdapter {
     private CameraInputController mController;
     private RenderContext mRenderContex;
 
-    private Color mSkyColor = Color.WHITE.mul(0.6f);
-    private Color mGroundColor = Color.valueOf("#0C056D").mul(0.6f);
+    private Color mSkyColor = Color.WHITE;
+    private Color mGroundColor = Color.valueOf("#0C056D");
 
     @Override
     public void create() {
