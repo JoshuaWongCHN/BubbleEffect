@@ -94,11 +94,11 @@ float cnoise(vec3 P){
 
 void main() {
     float perlin = cnoise(vec3( (a_position.x * 0.006) + (u_time * 0.2),  (a_position.y * 0.006) + (u_time * 0.3), (a_position.z * 0.006)));
-    vec3 position = a_position * (perlin * 0.1 + 0.8);
+    vec3 position = a_position * (perlin * 0.2 + 0.8);
 
     vec4 pos = u_worldTrans * vec4(position, 1.0);
     gl_Position = u_projViewTrans * pos;
-    vec3 normal = normalize(u_worldTrans * vec4(a_normal, 1,0)).xyz;
+    vec3 normal = normalize(u_worldTrans * vec4(a_normal, 1.0)).xyz;
 
     v_lightDiffuse = vec3(0.0);
     v_lightSpecular = vec3(0.0);
